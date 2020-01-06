@@ -32,5 +32,11 @@ module.exports={
     }else{
       ctx.response.body='错误熊希'
     }
+  },
+  json:async (ctx,next)=>{
+    ctx.send({
+      status: 'success',
+      data: 'hello ikcmap'
+    })
   }
 }
