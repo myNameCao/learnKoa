@@ -5,7 +5,7 @@ const methods = ['trace','debug', 'info','warn','error','fatal','mark']
 module.exports = ()=>{
  const contextLogger = {};
  log4js.configure({
-  appenders:{cheese:{type:'file',filename:'chris.log'}},
+  appenders:{cheese:{type:'file',filename:'.log/chris.log'}},
   categories:{default:{appenders:['cheese'],level:'info'}}
 });
 const config = {

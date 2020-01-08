@@ -6,14 +6,10 @@ const controller=require('./controller')
 
 module.exports=(app)=>{
   router.get('/',controller.index)
-
   router.get('/home',controller.home)
-
   router.get('/home/:id/:name',controller.homeParams)
   router.get('/user',controller.login )
-   router.post('/user/register',controller.register)
-   router.get('/json',controller.json)
-
+  router.post('/user/register',controller.register)
+  router.get('/json',controller.json)
   app.use(router.routes()).use(router.allowedMethods())
-
 }
