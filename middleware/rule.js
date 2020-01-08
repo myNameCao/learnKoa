@@ -17,7 +17,7 @@ rules.forEach(item=>{
   let content = {}
   fs.readdirSync(folder).forEach(filename=>{
     let extname = path.extname(filename) //  获得扩展名
-    if(exname=='.js'){
+    if(extname=='.js'){
       let  name = path.basename(filename,extname)
       content[name] = require(path.join(folder,filename))
     }
