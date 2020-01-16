@@ -1,6 +1,6 @@
 module.exports={
     index:async (ctx,next)=>{
-      ctx.response.body=`<h1>index page </h1>`
+      ctx.response.body=`<h1>index Chris page </h1>`
     },
     home:async (ctx,next)=>{
        ctx.response.body=`<h1>home page <h1/>`

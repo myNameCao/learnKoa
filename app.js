@@ -7,6 +7,6 @@ const middleware = require('./middleware')
 middleware(app)
 router(app)
 app.listen(3000, () => {
-  console.log('service start listening 3000')
+  console.log('service have start listening 3000')
 })
 
