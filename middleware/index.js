@@ -4,6 +4,7 @@ const nunjucks = require('koa-nunjucks-2')
 const staticFiles = require('koa-static')
 const miSend = require('./send')
 const cookie = require('./cookie')
+const sessionRole = require('./session')
 // 引入日志中间件
 const miLog = require('./log')
 const rule = require('./rule')
@@ -13,6 +14,8 @@ module.exports = (app) => {
   app.use(miLog())
   app.use(miSend())
   app.use(cookie())
+  
+  // app.use(sessionRole(app))
   rule({
     app,
     rules:[
