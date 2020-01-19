@@ -50,9 +50,7 @@ function parsePostData (ctx){
 
 function parseQueryStr( queryStr ) {
   let queryData = {}
-  console.log(queryStr)
   let queryStrList = queryStr.split('&')
-  console.log( queryStrList.entries())
   for (  let [ index, queryStr ] of queryStrList.entries()  ) {
     let itemList = queryStr.split('=')
     queryData[ itemList[0] ] = decodeURIComponent(itemList[1])

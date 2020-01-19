@@ -3,6 +3,7 @@ const bodyParser = require('koa-bodyparser')
 const nunjucks = require('koa-nunjucks-2')
 const staticFiles = require('koa-static')
 const miSend = require('./send')
+const cookie = require('./cookie')
 // 引入日志中间件
 const miLog = require('./log')
 const rule = require('./rule')
@@ -11,6 +12,7 @@ module.exports = (app) => {
   // 注册中间件
   app.use(miLog())
   app.use(miSend())
+  app.use(cookie())
   rule({
     app,
     rules:[
