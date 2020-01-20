@@ -9,8 +9,8 @@ const MysqlSession = require('koa-mysql-session')
 module.exports= (app)=>{
         let store = new MysqlSession({
           user: 'root',
-          password: 'abc123',
-          database: 'koa_demo',
+          password: 'chris',
+          database: 'chris',
           host: '127.0.0.1',
         })
         let cookie = {
@@ -22,7 +22,7 @@ module.exports= (app)=>{
           overwrite: '',  // 是否允许重写
           secure: '',
           sameSite: '',
-          signed: true,
+          signed: false,
         }
         app.use(session({
           key: 'SESSION_ID',
