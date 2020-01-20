@@ -5,4 +5,6 @@ CREATE TABLE   IF NOT EXISTS  `data` (
   `modified_time` varchar(20) DEFAULT NULL,
   `level` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+

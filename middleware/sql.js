@@ -1,6 +1,7 @@
 const mysql      = require('mysql')
 
 const fs = require('fs');
+const path = require('path')
 
 
 const pool = mysql.createPool({
@@ -11,9 +12,9 @@ const pool = mysql.createPool({
 })
 
 
-let sqlContentMap = {}
 
 let  query = function(sql,values){
+  console.log(sql,values)
   return new Promise((resolve,reject)=>{
     pool.getConnection(function(err,connection){
       if(err){
@@ -33,53 +34,35 @@ let  query = function(sql,values){
   })
 }
 
-const walkFile = function(  pathResolve , mime ){
-
+const walkFile = function(  ){
+  let pathResolve = path.resolve(__dirname,'../sql/') 
   let files = fs.readdirSync( pathResolve )
 
   let fileList = {}
-
    for( let [ i, item] of files.entries() ) {
-    let itemArr = item.split('\.')
-
+    let itemArr = item.split(/\./)
     let itemMime = ( itemArr.length > 1 ) ? itemArr[ itemArr.length - 1 ] : 'undefined'
     let keyName = item + ''
-    if( mime === itemMime ) {
-      fileList[ item ] =  pathResolve + item
+    if( 'sql' === itemMime ) {
+      fileList[ keyName ] =  `${pathResolve}/` + keyName
     }
   }
-
   return fileList
 }
 
-
+let sqlContentMap = {}
 function getSqlContent( fileName,  path ) {
   let content = fs.readFileSync( path, 'binary' )
   sqlContentMap[ fileName ] = content
 }
-function getSqlMap () {
-  let basePath = __dirname
-  basePath = basePath.replace(/\\/g, '\/')
-
-  let pathArr = basePath.split('\/')
-  pathArr = pathArr.splice( 0, pathArr.length - 1 )
-  basePath = pathArr.join('/') + '/sql/'
-
-  let fileList = walkFile( basePath, 'sql' )
-  return fileList
-}
-
-
 function getSqlContentMap () {
-  let sqlMap = getSqlMap()
+ 
+  let sqlMap = walkFile()
   for( let key in sqlMap ) {
     getSqlContent( key, sqlMap[key] )
   }
-
   return sqlContentMap
 }
-
-
 const eventLog = function( err , sqlFile, index ) {
   if( err ) {
     console.log(`[ERROR] sql脚本文件: ${sqlFile} 第${index + 1}条脚本 执行失败 o(╯□╰)o ！`)
@@ -108,9 +91,6 @@ const createAllTables = async (ctx,next) => {
       }
     }
   }
-  console.log('sql脚本执行结束！')
-  console.log('请按 ctrl + c 键退出！')
-  
    await next()
 }
 module.exports= createAllTables
