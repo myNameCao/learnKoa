@@ -1,20 +1,14 @@
-const mysql      = require('mysql')
-
+const mysql = require('mysql')
 const fs = require('fs');
 const path = require('path')
+const {database} = require('../config')
 
 
-const pool = mysql.createPool({
-  host     : '127.0.0.1',   // 数据库地址
-  user     : 'root',    // 数据库用户
-  password : 'chris',   // 数据库密码
-  database : 'chris'  // 选中数据库
-})
 
 
+const pool = mysql.createPool(database)
 
 let  query = function(sql,values){
-  console.log(sql,values)
   return new Promise((resolve,reject)=>{
     pool.getConnection(function(err,connection){
       if(err){

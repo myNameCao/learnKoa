@@ -1,13 +1,14 @@
 const Koa = require('koa')
 const app = new Koa()
 const router = require('./router')
+const config = require('./config')
 
 const middleware = require('./middleware')
 
 middleware(app)
 router(app)
 
-app.listen(3000, () => {
-  console.log('service have start listening 3000')
+app.listen(config.port, () => {
+  console.log(`service have start listening ${config.port}`)
 })
 
