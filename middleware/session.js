@@ -2,17 +2,10 @@
 
 const session = require('koa-session-minimal')
 const MysqlSession = require('koa-mysql-session')
-
-
-
+const {database} = require('../config')
 
 module.exports= (app)=>{
-        let store = new MysqlSession({
-          user: 'root',
-          password: 'chris',
-          database: 'chris',
-          host: '127.0.0.1',
-        })
+        let store = new MysqlSession(database)
         let cookie = {
           maxAge: '', // cookie有效时长
           expires: '',  // cookie失效时间
@@ -37,8 +30,6 @@ module.exports= (app)=>{
             count: 0
           }
         } else if ( ctx.url === '/' ) {
-
-          // 读取session信息
           ctx.session.count = ctx.session.count + 1
 
         } 

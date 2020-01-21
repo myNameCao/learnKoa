@@ -10,7 +10,7 @@ const mysql = require('./sql')
 const miLog = require('./log')
 const rule = require('./rule')
 
-module.exports = (app) => {
+module.exports = (app) => { 
   // 注册中间件
   app.use(miLog())
   app.use(miSend())
