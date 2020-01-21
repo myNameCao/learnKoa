@@ -64,28 +64,30 @@ const eventLog = function( err , sqlFile, index ) {
     console.log(`[SUCCESS] sql脚本文件: ${sqlFile} 第${index + 1}条脚本 执行成功 O(∩_∩)O !`)
   }
 }
-
-
 let sqlContentMaps = getSqlContentMap()
-
 // 执行建表sql脚本
 const createAllTables = async (ctx,next) => {
-  for( let key in sqlContentMaps ) {
-    let sqlShell = sqlContentMaps[key]
-    let sqlShellList = sqlShell.split(';')
-
-    for ( let [ i, shell ] of sqlShellList.entries() ) {
-      if ( shell.trim() ) {
-        let result = await query( shell )
-        if ( result.serverStatus * 1 === 2 ) {
-          eventLog( null,  key, i)
-        } else {
-          eventLog( true,  key, i) 
+  if(ctx.url==='/sql'){
+    for( let key in sqlContentMaps ) {
+      let sqlShell = sqlContentMaps[key]
+      let sqlShellList = sqlShell.split(';')
+  
+      for ( let [ i, shell ] of sqlShellList.entries() ) {
+        if ( shell.trim() ) {
+          let result = await query( shell )
+          if ( result.serverStatus * 1 === 2 ) {
+            eventLog( null,  key, i)
+          } else {
+            eventLog( true,  key, i) 
+          }
         }
       }
     }
+    await next()
+  }else{
+    await next()
   }
-   await next()
+  
 }
 module.exports= createAllTables
 
