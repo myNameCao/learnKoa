@@ -20,7 +20,7 @@ module.exports={
         </form>
       `
     },
-   register:async (ctx,next)=>{
+    register:async (ctx,next)=>{
       let {name, password} = ctx.request.body
       if( name == 'ikcamp' && password == '123456' ){
         ctx.response.body = `Hello， ${name}！` 
