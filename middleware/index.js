@@ -18,20 +18,7 @@ module.exports = (app) => {
   app.use(mysql)
   
   app.use(sessionRole(app))
-  rule({
-    app,
-    rules:[
-      {
-        folder:path.join(__dirname,'../controller'),
-        name:'controller',
-      },
-      {
-        folder:path.join(__dirname,'../service'),
-        name:'service',
-      },
-
-    ]
-  })
+  
   app.use(staticFiles(path.resolve(__dirname, "../public")))
   app.use(nunjucks({
     ext: 'html',

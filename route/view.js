@@ -1,13 +1,11 @@
 
   
   const router = require('koa-router')()
-  
-
-  module.exports=(app)=>{
-    router.get('/',app.controller.home.index)
-    router.get('/home',app.controller.home.home)
-    router.get('/home/:id/:name',app.controller.home.homeParams)
-    router.post('/user/register',app.controller.home.register)
-    router.get('/json',app.controller.home.json)
+  const view = require('../controller/view')
+  module.exports=()=>{
+    router.get('/',view.index)
+    router.get('/home',view.home)
+    router.get('/home/:id/:name',view.homeParams)
+    router.get('/json',view.json)
     return router
   }
