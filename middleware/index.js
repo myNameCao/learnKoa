@@ -27,6 +27,6 @@ module.exports = (app) => {
       trimBlocks: true
     }
   }));
-  app.use(bodyParser())
+  app.use(bodyParser()) // 因为 node 和 koa2  都没有提供解析post  请求的参数  所以就引入 body
   
 }
