@@ -1,0 +1,36 @@
+{
+	"czbApi":{
+		"master":{
+			"appKey":"m1.0",
+			"appSecret":"8de81bb5f4e7c0efba518379bff7aff6",
+			"appId":"wxba9c1a2dc695917b",
+		    "dataUrl":"https://scapi.czb365.com/sa?project=production",
+			"host":"https://mcs.czb365.com/services/v3"
+		},
+		"dev":{
+			"appKey":"m1.0",
+			"appSecret":"8de81bb5f4e7c0efba518379bff7aff6",
+			"appId":"wxba9c1a2dc695917b",
+		    "dataUrl":"https://scapi.czb365.com/sa",
+			"host":"https://test-mcs.czb365.com/services/v3"
+		},
+		"path":{
+			"login":"/begin/platformLogin",
+			"findBalance":"/gas/getOilNumList",
+			"findBalanceAll":"/order/findBalanceAll"
+		}
+	},
+	"czb_public":{
+		"path":{
+			"downComent":"/public/comment/download"
+		}
+	},
+	"czb_webHM":{
+		"host":"",
+		"path":{
+			"signIn":"index.html#signIn",
+			"index":"index.html",
+			"myPage":"mypage.html"
+		}
+	}
+}

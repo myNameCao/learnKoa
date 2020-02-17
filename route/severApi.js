@@ -1,7 +1,7 @@
 const router = require('koa-router')({
   prefix: '/api'
 });
-const service = require('../controller/service')
+const service = require('../service/service')
 
 router.all('/*', async (ctx,next) => {
   // *代表允许来自所有域名请求
