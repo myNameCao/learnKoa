@@ -15,5 +15,15 @@ module.exports={
         telphone:telphone,
         message:'holle word '
       }
+    },
+    checkName:async ctx => {
+      const {telphone,nameEn,nameCn} = ctx.request.body
+      ctx.response.body={
+        code:200,
+        userId:'66666',
+        name:nameEn,
+        telphone:telphone,
+        message:'holle word '
+      }
     }
  }

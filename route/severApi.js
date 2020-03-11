@@ -1,6 +1,6 @@
 const router = require('koa-router')({
   prefix: '/api'
-});
+});//  统一 接口 前缀
 const service = require('../service/service')
 
 router.all('/*', async (ctx,next) => {
@@ -12,9 +12,9 @@ router.all('/*', async (ctx,next) => {
 });
 
 
+
 router.post('/sigin',service.sigin)
+router.post('/checkName',service.checkName)
 router.get('/shareInfo',service.shareInfo)
-
-
 
 module.exports=router
